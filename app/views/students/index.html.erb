@@ -1,0 +1,6 @@
+
+Here are the students you searched for:
+
+<% @students.each do |s| %>
+    <%= render partial: 'student', locals: {student: s} %>
+<% end %>
