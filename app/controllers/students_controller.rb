@@ -20,9 +20,21 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
-  def index
-    @students = Student.all
+  def index   
+    if params[:student]
+      @students = Student.search(params[:student])
+      unless @students
+        flash[:message] = "Student by name of #{params[:student]} not found."
+        redirect_to students_path
+      end
+    else 
+      @students = Student.all
+    end
   end
+
+  # def search
+  #   binding.pry
+  # end
 
   def student_params
     params.require(:student).permit(:name, :birthday, :hometown)
