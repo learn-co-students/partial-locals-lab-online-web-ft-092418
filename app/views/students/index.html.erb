@@ -1,0 +1,9 @@
+
+<% @students.each do |student| %>
+  <%= render partial: "student", locals: {student: student} %>
+<% end %>
+
+<%= form_tag (students_path) do %>
+  <%= text_field_tag :search_string %>
+  <%= submit_tag "Search" %>
+<% end %>
